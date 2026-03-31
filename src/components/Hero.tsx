@@ -32,7 +32,7 @@ export default function Hero() {
           }`}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
-          Open Source · Multi-platform
+          Now available on the App Store
         </div>
 
         {/* Headline */}
@@ -66,23 +66,21 @@ export default function Hero() {
         >
           <a
             id="download"
-            href="https://github.com/dm50-app/releases"
+            href="https://apps.apple.com/es/app/dm50/id6760961234"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-3.5 rounded-full bg-cyan-500 text-white font-semibold text-base shadow-lg shadow-cyan-500/25 hover:bg-cyan-600 hover:shadow-cyan-600/30 hover:-translate-y-0.5 transition-all duration-200"
-          >
-            Download for macOS
-          </a>
-          <a
-            href="https://github.com/dm50-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-8 py-3.5 rounded-full border border-slate-200 text-slate-700 font-semibold text-base hover:border-slate-300 hover:bg-slate-50 hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-2"
+            className="px-8 py-3.5 rounded-full bg-slate-900 text-white font-semibold text-base shadow-lg shadow-slate-900/20 hover:bg-slate-700 hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-2.5"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
             </svg>
-            View on GitHub
+            Download on the App Store
+          </a>
+          <a
+            href="#features"
+            className="px-8 py-3.5 rounded-full border border-slate-200 text-slate-700 font-semibold text-base hover:border-slate-300 hover:bg-slate-50 hover:-translate-y-0.5 transition-all duration-200"
+          >
+            Learn more
           </a>
         </div>
 
@@ -92,7 +90,7 @@ export default function Hero() {
             inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}
         >
-          Available on macOS · Windows · Linux · iOS · Android · STM32
+          Available on iOS · iPadOS
         </p>
       </div>
 
