@@ -1,72 +1,59 @@
 import { useInView } from '../hooks/useInView'
 
-interface Testimonial {
-  quote: string
-  author: string
-  role: string
-  initials: string
-  color: string
-}
-
-const testimonials: Testimonial[] = [
+const testimonials = [
   {
-    quote:
-      "I've been using HP calculators since university. DM50 nails the feel — RPN stack, key layout, even the LCD font. It's the best software calculator I've ever used.",
-    author: 'Dr. Sarah Kim',
-    role: 'Electrical Engineer, Stanford',
+    quote: "I've been using HP calculators since university. DM50 nails the feel — RPN stack, key layout, even the LCD font. Best software calculator I've ever used.",
+    author: 'Dr. Sarah K.',
+    role: 'Electrical Engineer',
     initials: 'SK',
-    color: 'bg-violet-100 text-violet-700',
+    color: '#00d4aa',
   },
   {
-    quote:
-      'The CAS engine is genuinely impressive. I can solve symbolic integrals and factorise polynomials on my phone. No internet required, no subscriptions.',
-    author: 'Marco Bellini',
-    role: 'Mathematics PhD, ETH Zürich',
+    quote: 'The CAS engine is genuinely impressive. I solve symbolic integrals on my phone during lectures. No internet required, no subscriptions, just works.',
+    author: 'Marco B.',
+    role: 'Mathematics PhD',
     initials: 'MB',
-    color: 'bg-cyan-100 text-cyan-700',
+    color: '#ffb800',
   },
   {
-    quote:
-      "We flashed DM50 onto our STM32 eval board in an afternoon. Absolute magic. Our students get a real-hardware calculator experience without the cost.",
-    author: 'Prof. Akira Tanaka',
-    role: 'Embedded Systems Lecturer, Tokyo Tech',
+    quote: 'Matrix inversion with 4×4 matrices in my pocket. The grid editor is intuitive and the results are instant. This replaced my TI-89 for fieldwork.',
+    author: 'Prof. Akira T.',
+    role: 'Embedded Systems',
     initials: 'AT',
-    color: 'bg-amber-100 text-amber-700',
+    color: '#58a6ff',
   },
 ]
 
-function StarRating() {
-  return (
-    <div className="flex gap-0.5 text-amber-400 mb-4">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <svg key={i} className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-      ))}
-    </div>
-  )
-}
-
-function TestimonialCard({ t, delay }: { t: Testimonial; delay: number }) {
+function TestimonialCard({ t, delay }: { t: typeof testimonials[0]; delay: number }) {
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.1 })
-
   return (
     <div
       ref={ref}
-      className={`bg-white rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-500 ${
-        inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
+      className="border border-retro-border bg-retro-card p-6"
+      style={{
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'none' : 'translateY(16px)',
+        transition: `opacity 0.5s ease ${delay}ms, transform 0.5s ease ${delay}ms`,
+        borderLeft: `3px solid ${t.color}`,
+        boxShadow: `0 0 20px ${t.color}18`,
+      }}
     >
-      <StarRating />
-      <blockquote className="text-slate-700 text-base leading-relaxed mb-6">"{t.quote}"</blockquote>
+      <div className="font-pixel text-xs mb-4 tracking-widest" style={{ color: '#ffb800', textShadow: '0 0 8px #ffb800' }}>
+        ★★★★★
+      </div>
+      <blockquote className="font-mono-retro text-retro-muted text-xs leading-relaxed mb-5">
+        "{t.quote}"
+      </blockquote>
       <div className="flex items-center gap-3">
-        <div className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm ${t.color}`}>
+        <div
+          className="w-8 h-8 flex items-center justify-center font-pixel text-xs flex-shrink-0 border"
+          style={{ color: t.color, borderColor: t.color + '60' }}
+        >
           {t.initials}
         </div>
         <div>
-          <p className="font-semibold text-slate-900 text-sm">{t.author}</p>
-          <p className="text-slate-500 text-xs">{t.role}</p>
+          <div className="font-pixel text-xs" style={{ color: '#d4e8f0' }}>{t.author}</div>
+          <div className="font-mono-retro text-retro-muted text-xs">{t.role}</div>
         </div>
       </div>
     </div>
@@ -77,26 +64,21 @@ export default function Testimonials() {
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.1 })
 
   return (
-    <section id="testimonials" className="py-28 bg-white">
+    <section className="py-24 border-t border-retro-border bg-retro-surface">
       <div className="max-w-6xl mx-auto px-6">
-        {/* Section header */}
         <div
           ref={ref}
-          className={`text-center max-w-2xl mx-auto mb-16 transition-all duration-700 ${
-            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className="mb-12"
+          style={{ opacity: inView ? 1 : 0, transform: inView ? 'none' : 'translateY(16px)', transition: 'opacity 0.6s ease, transform 0.6s ease' }}
         >
-          <p className="text-cyan-600 text-sm font-semibold uppercase tracking-widest mb-3">Testimonials</p>
-          <h2 className="text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
-            Trusted by engineers & academics.
+          <div className="retro-badge inline-block mb-4">// USER REVIEWS</div>
+          <h2 className="font-pixel text-lg sm:text-xl" style={{ color: '#d4e8f0', lineHeight: '2' }}>
+            What engineers<br />
+            <span style={{ color: '#00d4aa', textShadow: '0 0 8px #00d4aa, 0 0 20px #00d4aa' }}>are saying</span>
           </h2>
-          <p className="text-slate-500 text-lg">
-            From university labs to embedded prototypes — hear what real users say about DM50.
-          </p>
         </div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {testimonials.map((t, i) => (
             <TestimonialCard key={t.author} t={t} delay={i * 100} />
           ))}
