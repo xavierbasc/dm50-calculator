@@ -98,6 +98,20 @@ export default function Footer() {
                 </svg>
                 macOS
               </a>
+              <a
+                href={`${RELEASES_BASE}/DM50-Linux`}
+                className="inline-flex items-center gap-2 px-5 py-3 border border-retro-border text-retro-muted font-pixel text-xs hover:text-green hover:border-green transition-colors"
+                style={{ clipPath: 'polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px))' }}
+              >
+                <svg className="w-4 h-4" viewBox="0 0 24 24" style={{ imageRendering: 'pixelated' }}>
+                  <rect x="2" y="4" width="20" height="14" fill="currentColor" opacity="0.15"/>
+                  <rect x="2" y="4" width="20" height="14" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+                  <rect x="5" y="9" width="2" height="2" fill="currentColor"/>
+                  <rect x="8" y="9" width="6" height="2" fill="currentColor" opacity="0.7"/>
+                  <rect x="9" y="19" width="6" height="2" fill="currentColor"/>
+                </svg>
+                Linux
+              </a>
             </div>
             <p className="font-mono-retro text-retro-muted text-xs mt-3">iOS · Android · Windows · macOS · Linux</p>
           </div>

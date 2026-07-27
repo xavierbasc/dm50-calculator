@@ -95,7 +95,7 @@ export default function Hero() {
         <div>
           {/* Badge */}
           <div className={`retro-badge inline-block mb-8 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            ★ iOS · ANDROID · WINDOWS · MACOS ★
+            ★ iOS · ANDROID · WINDOWS · MACOS · LINUX ★
           </div>
 
           {/* Title */}
@@ -108,7 +108,7 @@ export default function Hero() {
 
           <p className={`font-mono-retro text-retro-muted text-sm sm:text-base leading-relaxed mt-6 mb-8 transition-all duration-700 delay-150 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             &gt; HP-inspired scientific calculator for iOS,<br/>
-            &nbsp;&nbsp;Android, Windows &amp; macOS.<br/>
+            &nbsp;&nbsp;Android, Windows, macOS &amp; Linux.<br/>
             &gt; Authentic 132×64 monochrome LCD display.<br/>
             &gt; RPN stack, CAS algebra, matrices, vectors.<br/>
             &gt; No internet. No subscription. Just math.
@@ -175,6 +175,21 @@ export default function Hero() {
                 <path d="M21 16H3V4h18v12zm0-14H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7v2H8v2h8v-2h-2v-2h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
               </svg>
               macOS
+            </a>
+            <a
+              href={`${RELEASES_BASE}/DM50-Linux`}
+              className="flex items-center justify-center gap-2 px-6 py-3 border border-retro-border text-retro-muted font-pixel text-xs hover:text-green hover:border-green transition-colors duration-150"
+              style={{ clipPath: 'polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px))' }}
+              title="Linux x64 (requiere libSDL2)"
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" style={{ imageRendering: 'pixelated' }}>
+                <rect x="2" y="4" width="20" height="14" fill="currentColor" opacity="0.15"/>
+                <rect x="2" y="4" width="20" height="14" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+                <rect x="5" y="9" width="2" height="2" fill="currentColor"/>
+                <rect x="8" y="9" width="6" height="2" fill="currentColor" opacity="0.7"/>
+                <rect x="9" y="19" width="6" height="2" fill="currentColor"/>
+              </svg>
+              Linux
             </a>
           </div>
         </div>
