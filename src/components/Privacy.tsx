@@ -14,7 +14,7 @@ const sections = [
   {
     icon: '💾',
     title: 'Local Storage Only',
-    body: 'Any data saved by the app (high scores, settings) is stored locally in your device\'s sandbox using standard iOS file APIs. This data never leaves your device.',
+    body: 'Any data saved by the app (high scores, settings) is stored locally in your device\'s sandboxed storage using standard platform file APIs. This data never leaves your device.',
   },
   {
     icon: '🍪',
@@ -100,7 +100,7 @@ export default function Privacy() {
               <strong className="text-retro-text">Contact:</strong> For any privacy-related questions, you may contact the developer through the App Store support link on the DM50 product page.
             </p>
             <p className="text-retro-muted/60 text-xs mt-4">
-              This privacy policy was last updated: 2026. It applies to DM50 for iOS as distributed on the Apple App Store.
+              This privacy policy was last updated: 2026. It applies to DM50 across all supported platforms — iPhone, iPad and Mac (Apple App Store), Android, Windows and Linux.
             </p>
           </div>
         </div>

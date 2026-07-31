@@ -31,7 +31,7 @@ export default function Screenshots() {
           <div className="retro-badge inline-block mb-4">// SCREENSHOTS</div>
           <h2 className="font-pixel text-lg sm:text-xl text-retro-text leading-relaxed">
             See it in action<br />
-            <span className="text-green lcd-glow">on your iPhone</span>
+            <span className="text-green lcd-glow">on every device</span>
           </h2>
         </div>
 
