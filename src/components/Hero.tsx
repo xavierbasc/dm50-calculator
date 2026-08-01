@@ -1,6 +1,7 @@
 import { useInView } from '../hooks/useInView'
 
 const APP_STORE_URL = 'https://apps.apple.com/es/app/dm50/id6760961234'
+const MS_STORE_URL = 'https://apps.microsoft.com/detail/9nx95hg3n9tp?hl=es-ES&gl=ES'
 const RELEASES_BASE = 'https://github.com/xavierbasc/50calc/releases/latest/download'
 
 function PixelCalcIcon() {
@@ -156,15 +157,17 @@ export default function Hero() {
               Android <span className="text-amber ml-1">[ .apk ]</span>
             </a>
             <a
-              href={`${RELEASES_BASE}/DM50-Windows.zip`}
+              href={MS_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 px-6 py-3 border border-retro-border text-retro-muted font-pixel text-xs hover:text-green hover:border-green transition-colors duration-150"
               style={{ clipPath: 'polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px))' }}
-              title="Windows 10+ (zip, no installer)"
+              title="Windows 10+ — Microsoft Store"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M3 5.45l7.377-1.016v7.127H3V5.45zm7.377 6.945v7.153L3 18.522V12.395h7.377zm.887-8.084L21 3v8.561h-9.736V4.311zM21 12.395V21l-9.736-1.342v-7.263H21z"/>
               </svg>
-              Windows
+              Windows <span className="text-amber ml-1">[ Store ]</span>
             </a>
             <a
               href={`${RELEASES_BASE}/DM50-Linux`}
@@ -184,7 +187,8 @@ export default function Hero() {
           </div>
 
           <p className={`font-mono-retro text-retro-muted/70 text-xs mt-3 transition-all duration-700 delay-300 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            &gt; App Store: one Universal Purchase unlocks iPhone, iPad &amp; Mac.
+            &gt; App Store: one Universal Purchase unlocks iPhone, iPad &amp; Mac.<br/>
+            &gt; Windows: available on the Microsoft Store.
           </p>
         </div>
 
