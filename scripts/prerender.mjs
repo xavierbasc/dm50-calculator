@@ -39,11 +39,26 @@ function waitForServer(url, timeoutMs = 20000) {
   })
 }
 
+function killPreview(preview) {
+  if (preview.exitCode !== null || preview.killed) return
+  try {
+    // Negative pid = kill the whole process group, since `npx vite preview`
+    // can spawn the real server as a grandchild that a plain preview.kill()
+    // (SIGTERM to just the npx wrapper's pid) would otherwise leave running
+    // — that's what hung the CI job the first time this shipped: the build
+    // step never returned because a live server was still holding stdio open.
+    process.kill(-preview.pid, 'SIGTERM')
+  } catch {
+    // already gone, or platform doesn't support process groups
+    try { preview.kill('SIGTERM') } catch {}
+  }
+}
+
 async function main() {
   const preview = spawn(
     'npx',
     ['vite', 'preview', '--port', String(PORT), '--strictPort'],
-    { cwd: root, stdio: 'pipe' },
+    { cwd: root, stdio: ['ignore', 'ignore', 'pipe'], detached: true },
   )
   preview.stderr.on('data', (d) => process.stderr.write(d))
 
@@ -64,11 +79,27 @@ async function main() {
 
     await browser.close()
   } finally {
-    preview.kill()
+    killPreview(preview)
   }
 }
 
-main().catch((err) => {
-  console.error(err)
+// Watchdog: this step has hung the CI job before (a leftover server process
+// kept stdio open and the build step never returned). If anything stalls —
+// slow network for the Google Fonts request, a Playwright wait that never
+// resolves — force the process down rather than eating the runner's whole
+// timeout budget. unref() so it doesn't itself keep a healthy run alive.
+const watchdog = setTimeout(() => {
+  console.error('prerender.mjs: watchdog timeout after 60s, forcing exit')
   process.exit(1)
-})
+}, 60_000)
+watchdog.unref()
+
+// Force-exit once done: this is a one-shot build script, and a lingering
+// handle from the browser or the preview server's process group is not
+// worth chasing — better to guarantee the CI step actually returns.
+main()
+  .then(() => process.exit(0))
+  .catch((err) => {
+    console.error(err)
+    process.exit(1)
+  })
