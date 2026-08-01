@@ -1,0 +1,22 @@
+{
+  "name": "DM50 — Scientific Calculator",
+  "short_name": "DM50",
+  "description": "HP-inspired scientific calculator with RPN, CAS algebra, matrices, equations, vectors and unit conversion.",
+  "start_url": "/dm50-calculator/",
+  "scope": "/dm50-calculator/",
+  "display": "standalone",
+  "background_color": "#0a0e17",
+  "theme_color": "#0a0e17",
+  "icons": [
+    {
+      "src": "/dm50-calculator/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/dm50-calculator/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -248,19 +248,17 @@ export default function Manual() {
                 </button>
 
                 {/* Content */}
-                {isOpen && (
-                  <div className="px-5 pb-6 pt-2 border-t border-retro-border bg-retro-card">
-                    <div className="pixel-divider mb-5"/>
-                    <div className="grid sm:grid-cols-2 gap-x-8 gap-y-5">
-                      {s.content.map((c) => (
-                        <div key={c.heading}>
-                          <div className="font-pixel text-xs mb-2" style={{ color: s.color }}>&gt; {c.heading}</div>
-                          <p className="font-mono-retro text-retro-muted text-xs leading-relaxed">{c.body}</p>
-                        </div>
-                      ))}
-                    </div>
+                <div className={`px-5 pb-6 pt-2 border-t border-retro-border bg-retro-card ${isOpen ? '' : 'hidden'}`}>
+                  <div className="pixel-divider mb-5"/>
+                  <div className="grid sm:grid-cols-2 gap-x-8 gap-y-5">
+                    {s.content.map((c) => (
+                      <div key={c.heading}>
+                        <div className="font-pixel text-xs mb-2" style={{ color: s.color }}>&gt; {c.heading}</div>
+                        <p className="font-mono-retro text-retro-muted text-xs leading-relaxed">{c.body}</p>
+                      </div>
+                    ))}
                   </div>
-                )}
+                </div>
               </div>
             )
           })}

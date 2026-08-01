@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xavierbasc.github.io/dm50-calculator/sitemap.xml
