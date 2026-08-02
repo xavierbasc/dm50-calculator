@@ -3,21 +3,40 @@ import { useCallback, useRef } from 'react'
 // Lazily-created, shared across every button so we don't spawn one
 // AudioContext per component instance (Hero + Footer both use this hook).
 let sharedCtx: AudioContext | null = null
+let unlockRegistered = false
+
+// Browsers only allow resume() to actually take effect when it runs inside
+// a genuine user-gesture handler. Calling it from a hover (mouseenter isn't
+// a gesture) just gets rejected and logs "AudioContext was not allowed to
+// start" on every single hover. Instead, wire the one resume attempt to the
+// first real gesture anywhere on the page, and let playTone() silently skip
+// until that has happened.
+function registerUnlock() {
+  if (unlockRegistered || typeof window === 'undefined') return
+  unlockRegistered = true
+  const tryResume = () => {
+    if (sharedCtx && sharedCtx.state === 'suspended') void sharedCtx.resume()
+  }
+  window.addEventListener('pointerdown', tryResume, { once: true })
+  window.addEventListener('keydown', tryResume, { once: true })
+}
 
 function getAudioContext(): AudioContext | null {
   if (typeof window === 'undefined') return null
-  const Ctor = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
-  if (!Ctor) return null
-  if (!sharedCtx) sharedCtx = new Ctor()
-  // Browsers start the context suspended until a user gesture unlocks it;
-  // this resume() is a no-op once that's already happened.
-  if (sharedCtx.state === 'suspended') void sharedCtx.resume()
+  if (!sharedCtx) {
+    const Ctor = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
+    if (!Ctor) return null
+    sharedCtx = new Ctor()
+    registerUnlock()
+  }
   return sharedCtx
 }
 
 function playTone(freq: number, durationMs: number, gainValue = 0.05) {
   const ctx = getAudioContext()
-  if (!ctx) return
+  // Silently skip until a real user gesture has unlocked the context —
+  // calling resume()/start() before that just re-triggers the browser warning.
+  if (!ctx || ctx.state !== 'running') return
 
   const osc = ctx.createOscillator()
   const gain = ctx.createGain()
