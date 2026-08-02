@@ -105,11 +105,12 @@ export default function Footer() {
                 Windows
               </CtaButton>
               <CtaButton
-                href={`${RELEASES_BASE}/DM50-Linux`}
+                href={`${RELEASES_BASE}/DM50-Linux.deb`}
                 primary={platform === 'linux'}
                 surfaceClass="bg-retro-surface"
                 onMouseEnter={playHover}
                 padding="px-5 py-3"
+                title="Debian/Ubuntu .deb — installs via apt"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24" style={{ imageRendering: 'pixelated' }}>
                   <rect x="2" y="4" width="20" height="14" fill="currentColor" opacity="0.15"/>

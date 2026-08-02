@@ -187,13 +187,13 @@ export default function Hero() {
               Windows
             </CtaButton>
             <CtaButton
-              href={`${RELEASES_BASE}/DM50-Linux`}
+              href={`${RELEASES_BASE}/DM50-Linux.deb`}
               primary={platform === 'linux'}
               surfaceClass="bg-retro-bg"
               onMouseEnter={playHover}
               padding="px-6 py-3"
               justifyCenter
-              title="Linux x64 (requires libSDL2)"
+              title="Debian/Ubuntu .deb — installs via apt"
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24" style={{ imageRendering: 'pixelated' }}>
                 <rect x="2" y="4" width="20" height="14" fill="currentColor" opacity="0.15"/>
@@ -209,7 +209,7 @@ export default function Hero() {
           <p className={`font-mono-retro text-retro-muted/70 text-xs mt-3 transition-all duration-700 delay-300 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             &gt; App Store: one Universal Purchase unlocks iPhone, iPad &amp; Mac.<br/>
             &gt; Windows: available on the Microsoft Store.<br/>
-            &gt; Debian/Ubuntu: <a href={`${RELEASES_BASE}/DM50-Linux.deb`} className="text-green hover:text-green-bright underline">.deb package</a> (installs via apt).
+            &gt; Other Linux distros: <a href={`${RELEASES_BASE}/DM50-Linux`} className="text-green hover:text-green-bright underline">portable binary</a> (no apt, requires libSDL2).
           </p>
         </div>
 
