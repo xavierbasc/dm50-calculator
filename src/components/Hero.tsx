@@ -130,7 +130,7 @@ export default function Hero() {
           </div>
 
           {/* CTAs */}
-          <div className={`flex flex-col sm:flex-row gap-3 flex-wrap transition-all duration-700 delay-300 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className={`grid grid-cols-1 sm:grid-cols-2 gap-3 transition-all duration-700 delay-300 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <a
               id="download"
               href={APP_STORE_URL}
