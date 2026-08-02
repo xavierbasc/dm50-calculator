@@ -208,7 +208,8 @@ export default function Hero() {
 
           <p className={`font-mono-retro text-retro-muted/70 text-xs mt-3 transition-all duration-700 delay-300 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             &gt; App Store: one Universal Purchase unlocks iPhone, iPad &amp; Mac.<br/>
-            &gt; Windows: available on the Microsoft Store.
+            &gt; Windows: available on the Microsoft Store.<br/>
+            &gt; Debian/Ubuntu: <a href={`${RELEASES_BASE}/DM50-Linux.deb`} className="text-green hover:text-green-bright underline">.deb package</a> (installs via apt).
           </p>
         </div>
 
