@@ -39,8 +39,13 @@ export default function Navbar() {
               <rect x="11" y="10" width="2" height="2" fill="#1e3a5f"/>
             </svg>
           </div>
-          <span className="font-pixel text-xs text-green leading-none" style={{ textShadow: '0 0 8px #00d4aa' }}>
-            DM50
+          <span className="flex items-baseline gap-2 leading-none">
+            <span className="font-pixel text-xs text-green" style={{ textShadow: '0 0 8px #00d4aa' }}>
+              DM50
+            </span>
+            <span className="hidden sm:inline font-mono-retro text-[10px] text-retro-muted uppercase tracking-wider">
+              Calculator
+            </span>
           </span>
         </a>
 

@@ -1,8 +1,20 @@
+import { useEffect } from 'react'
 import { useInView } from '../hooks/useInView'
+import { useDetectedPlatform } from '../hooks/useDetectedPlatform'
+import { useBeep } from '../hooks/useBeep'
 
 const APP_STORE_URL = 'https://apps.apple.com/es/app/dm50/id6760961234'
 const MS_STORE_URL = 'https://apps.microsoft.com/detail/9nx95hg3n9tp?hl=es-ES&gl=ES'
 const RELEASES_BASE = 'https://github.com/xavierbasc/50calc/releases/latest/download'
+
+const CTA_BASE = 'flex items-center justify-center gap-2 px-6 py-3 font-pixel text-xs transition-all duration-150 hover:scale-105 active:scale-100'
+const CTA_PRIMARY = `${CTA_BASE} bg-green text-retro-bg hover:bg-green-bright shadow-green-glow`
+const CTA_SECONDARY = `${CTA_BASE} border border-retro-border text-retro-muted hover:text-green hover:border-green`
+
+// Detected button gets the primary look plus a gentle pulsing glow to mark it.
+function ctaClass(isDetected: boolean) {
+  return isDetected ? `${CTA_PRIMARY} animate-pulse-green` : CTA_SECONDARY
+}
 
 function PixelCalcIcon() {
   return (
@@ -68,6 +80,12 @@ function PixelCalcIcon() {
 
 export default function Hero() {
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.05 })
+  const { platform, hasDetected } = useDetectedPlatform()
+  const { playHover, playDetect } = useBeep()
+
+  useEffect(() => {
+    if (hasDetected) playDetect()
+  }, [hasDetected, playDetect])
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-14">
@@ -136,7 +154,8 @@ export default function Hero() {
               href={APP_STORE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 px-6 py-3 bg-green text-retro-bg font-pixel text-xs hover:bg-green-bright transition-colors duration-150 shadow-green-glow"
+              className={ctaClass(platform === 'apple')}
+              onMouseEnter={playHover}
               style={{ clipPath: 'polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px))' }}
               title="iPhone, iPad & Mac — one purchase, every Apple device"
             >
@@ -147,7 +166,8 @@ export default function Hero() {
             </a>
             <a
               href={`${RELEASES_BASE}/DM50-Android.apk`}
-              className="flex items-center justify-center gap-2 px-6 py-3 border border-retro-border text-retro-muted font-pixel text-xs hover:text-green hover:border-green transition-colors duration-150"
+              className={ctaClass(platform === 'android')}
+              onMouseEnter={playHover}
               style={{ clipPath: 'polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px))' }}
               title="Direct APK download"
             >
@@ -160,7 +180,8 @@ export default function Hero() {
               href={MS_STORE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 px-6 py-3 border border-retro-border text-retro-muted font-pixel text-xs hover:text-green hover:border-green transition-colors duration-150"
+              className={ctaClass(platform === 'windows')}
+              onMouseEnter={playHover}
               style={{ clipPath: 'polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px))' }}
               title="Windows 10+ — Microsoft Store"
             >
@@ -171,7 +192,8 @@ export default function Hero() {
             </a>
             <a
               href={`${RELEASES_BASE}/DM50-Linux`}
-              className="flex items-center justify-center gap-2 px-6 py-3 border border-retro-border text-retro-muted font-pixel text-xs hover:text-green hover:border-green transition-colors duration-150"
+              className={ctaClass(platform === 'linux')}
+              onMouseEnter={playHover}
               style={{ clipPath: 'polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px))' }}
               title="Linux x64 (requires libSDL2)"
             >
