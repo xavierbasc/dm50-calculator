@@ -8,7 +8,7 @@ const shots = [
   { file: 'dm50_02_cas.png',        label: 'CAS Algebra',       desc: 'Symbolic algebra: equations, derivatives, simplification.' },
   { file: 'dm50_03_rpn.png',        label: 'RPN Stack',         desc: 'Classic Reverse Polish Notation with live 4-level stack.' },
   { file: 'dm50_04_matrices.png',   label: 'Matrices',          desc: 'Matrix editor with operations: det, inv, transpose, multiply.' },
-  { file: 'dm50_05_conversion.png', label: 'Unit Conversion',   desc: 'Convert length, mass, temperature, energy and more.' },
+  { file: 'dm50_05_conversion.png', label: 'Base Conversion',   desc: 'Decimal, binary, octal and hexadecimal, all shown live at once.' },
   { file: 'dm50_06_ecuaciones.png', label: 'Equation Solver',   desc: 'Solve 2×2 and 3×3 linear systems with exact results.' },
   { file: 'dm50_07_imaginarios.png',label: 'Complex Numbers',   desc: 'Arithmetic in ℂ: rectangular and polar display.' },
   { file: 'dm50_08_vectores.png',   label: 'Vectors',           desc: 'Dot product, cross product, magnitude in 2D/3D.' },

@@ -36,6 +36,10 @@ const sections = [
         heading: 'Key: BACK / AC',
         body: 'BACK returns to the previous mode. AC clears X and resets the current mode state — useful to start a fresh calculation.',
       },
+      {
+        heading: 'Key: BLUE + BACK',
+        body: 'Undo your last entry or operation. Press it again to redo — it toggles between the current state and the one before it.',
+      },
     ],
   },
   {
@@ -67,6 +71,10 @@ const sections = [
       {
         heading: 'Precision Engine',
         body: 'Backed by GMP and MPFR libraries for arbitrary-precision arithmetic. Rational numbers stay exact: 1/3 is never rounded to a decimal unless you request numeric evaluation.',
+      },
+      {
+        heading: 'Key: BLUE + BACK',
+        body: 'Undo your last edit to the expression. Press it again to redo — it toggles between the current and previous state.',
       },
     ],
   },
@@ -102,19 +110,87 @@ const sections = [
     id: 'conversion',
     icon: '⇄',
     color: '#ff4757',
-    title: 'Unit Conversion',
+    title: 'Base Conversion',
+    content: [
+      {
+        heading: 'Four Bases at Once',
+        body: 'Type a value in Decimal, Binary, Octal or Hexadecimal (F1–F4 select the input base) and see it converted live in all four representations simultaneously.',
+      },
+      {
+        heading: '16-bit Range',
+        body: 'Values are treated as unsigned 16-bit integers (0–65535). Invalid digits for the selected base are rejected with an error.',
+      },
+      {
+        heading: 'Key: CLR',
+        body: 'F6 (CLR) resets the input buffer and the current value back to zero.',
+      },
+    ],
+  },
+  {
+    id: 'units',
+    icon: '⇌',
+    color: '#00d4aa',
+    title: 'Unit Converter',
     content: [
       {
         heading: 'Categories',
-        body: 'Conversions are organised by physical dimension: Length, Mass, Temperature, Energy, Pressure, Speed, Volume, Area, Time, and Digital storage.',
+        body: 'Five physical dimensions: Length (m, km, cm, mm, in, ft, yd, mi), Mass (kg, g, mg, lb, oz, t), Temperature (°C, °F, K), Volume (L, mL, m³, gal, qt, fl oz) and Speed (m/s, km/h, mph, knots, ft/s).',
       },
       {
         heading: 'How to Convert',
-        body: 'Select a category → enter the value in the top field → select the source unit (F2) and target unit (F3) → press F1 (CONVERT). The result appears in the bottom field.',
+        body: 'Pick a category, then use LEFT/RIGHT to jump between the "From" unit, the value field and the "To" unit. With a unit field selected, UP/DOWN cycles through the available units. Type the value, press ENTER to convert.',
+      },
+      {
+        heading: 'Key: SWAP',
+        body: 'F1 instantly swaps the "From" and "To" units — handy for checking a conversion in reverse.',
       },
       {
         heading: 'Temperature Special Case',
-        body: 'Temperature (°C, °F, K) uses affine conversion (not just scaling), handled correctly by the engine.',
+        body: 'Temperature (°C, °F, K) uses affine conversion, not just scaling — handled correctly by the engine.',
+      },
+    ],
+  },
+  {
+    id: 'triangle',
+    icon: '△',
+    color: '#ffb800',
+    title: 'Triangle Solver',
+    content: [
+      {
+        heading: 'Enter Any 3 Known Values',
+        body: 'Fill in any combination of 3 sides and angles (at least one must be a side) — sides a, b, c on the left, angles A, B, C on the right, each opposite its matching side.',
+      },
+      {
+        heading: 'Solving Method',
+        body: 'Handles SSS (three sides, law of cosines), SAS and SSA (two sides + an angle, law of cosines/sines) and ASA/AAS (two angles + a side, law of sines) automatically — whichever combination you provide.',
+      },
+      {
+        heading: 'Key: SOLVE',
+        body: 'F1 computes the missing sides and angles, plus the triangle\'s area and perimeter, shown at the bottom of the screen.',
+      },
+      {
+        heading: 'Invalid Triangles',
+        body: 'If the three given values can\'t form a real triangle (or the data is ambiguous), an error is shown instead of a wrong answer.',
+      },
+    ],
+  },
+  {
+    id: 'dates',
+    icon: 'Δ',
+    color: '#58a6ff',
+    title: 'Date Calculator',
+    content: [
+      {
+        heading: 'Enter Two Dates',
+        body: 'Fill in D1 and D2 as day / month / year. Navigate between the two dates with UP/DOWN, and between day/month/year with LEFT/RIGHT.',
+      },
+      {
+        heading: 'Key: CALC',
+        body: 'F1 shows the day of the week for both D1 and D2, plus the exact number of days between them.',
+      },
+      {
+        heading: 'Calendar Engine',
+        body: 'Uses Julian Day Number math for accurate results across the full Gregorian calendar — no drift over centuries.',
       },
     ],
   },
@@ -203,6 +279,26 @@ const sections = [
       {
         heading: 'Precision',
         body: 'All constants are stored at full CODATA precision. No rounding errors from abbreviated values.',
+      },
+    ],
+  },
+  {
+    id: 'formulas',
+    icon: 'ƒ',
+    color: '#00d4aa',
+    title: 'Formula Library',
+    content: [
+      {
+        heading: 'Browsing Formulas',
+        body: 'Press BLUE + LIB from CAS or RPN to open the formula library — organised by category, from geometry to physics.',
+      },
+      {
+        heading: 'Hand-Drawn Diagrams',
+        body: 'Each formula comes with its own pixel-art diagram on the left, and the equation itself on the right — styled like a classic HP equation library.',
+      },
+      {
+        heading: 'Inserting a Formula',
+        body: 'Navigate with UP/DOWN or F1/F2, use LEFT/RIGHT to flip between formulas in the same category, and press ENTER to insert it into your calculation.',
       },
     ],
   },
